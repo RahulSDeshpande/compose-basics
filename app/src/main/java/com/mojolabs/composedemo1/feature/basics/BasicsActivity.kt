@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1
+package com.mojolabs.composedemo1.feature.basics
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -26,20 +26,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mojolabs.composedemo1.ui.theme.colors
 
-class MainActivity : ComponentActivity() {
+class BasicsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             // GreetingText("Text 123")
             // GreetingButton()
-            MainScreen()
+            BasicsMainScreen()
         }
     }
 }
 
 @Composable
-fun MainScreen() {
+private fun BasicsMainScreen() {
     Surface(
         color = Color.LightGray,
         modifier = Modifier.fillMaxSize()
@@ -150,7 +150,7 @@ fun MainScreen() {
 }
 
 @Composable
-fun ColorBox1(color: Color) {
+private fun ColorBox1(color: Color) {
     Surface(
         color = color,
         modifier = Modifier
@@ -161,7 +161,7 @@ fun ColorBox1(color: Color) {
 }
 
 @Composable
-fun ColorBox2(color: Color) {
+private fun ColorBox2(color: Color) {
     Surface(
         color = color,
         modifier = Modifier
@@ -171,14 +171,17 @@ fun ColorBox2(color: Color) {
     ) {}
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
 @Composable
-fun MainScreenPreview() {
-    MainScreen()
+private fun MainScreenPreview() {
+    BasicsMainScreen()
 }
 
 @Composable
-fun GreetingText(
+private fun GreetingText(
     name: String,
     modifier: Modifier = Modifier
 ) {
@@ -202,7 +205,7 @@ fun GreetingText(
 }
 
 @Composable
-fun GreetingButton() {
+private fun GreetingButton() {
     Button(onClick = { }) {
         GreetingText("Button 123")
         GreetingText("Button 456")
@@ -211,7 +214,7 @@ fun GreetingButton() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+private fun GreetingPreview() {
     // GreetingText("Text 123")
     GreetingButton()
 }
