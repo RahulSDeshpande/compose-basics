@@ -49,24 +49,24 @@ fun MainScreen() {
                 color = Color.DarkGray,
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.TopStart)
-                    .padding(24.dp)
+                    .padding(16.dp)
             ) {
                 Text(
                     text = "Text 1",
                     color = Color.Red,
-                    modifier = Modifier.wrapContentSize().padding(24.dp),
+                    modifier = Modifier.wrapContentSize().padding(16.dp),
                     style = MaterialTheme.typography.headlineLarge
                 )
                 Text(
                     text = "Text 2",
                     color = Color.Green,
-                    modifier = Modifier.wrapContentSize().padding(12.dp),
+                    modifier = Modifier.wrapContentSize().padding(8.dp),
                     style = MaterialTheme.typography.headlineLarge
                 )
                 Text(
                     text = "Text 3",
                     color = Color.Yellow,
-                    modifier = Modifier.wrapContentSize().padding(0.dp),
+                    modifier = Modifier.wrapContentSize().padding(4.dp),
                     style = MaterialTheme.typography.headlineLarge
                 )
             }
@@ -75,7 +75,7 @@ fun MainScreen() {
                 color = Color.DarkGray,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(24.dp)
+                    .padding(16.dp)
             ) {
                 Row {
                     Surface(
@@ -106,18 +106,43 @@ fun MainScreen() {
                 color = Color.DarkGray,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(24.dp)
+                    .padding(16.dp)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.Top
                 ) {
-                    ColorBox(colors.random())
-                    ColorBox(colors.random())
-                    ColorBox(colors.random())
-                    ColorBox(colors.random())
-                    ColorBox(colors.random())
-                    ColorBox(colors.random())
+                    ColorBox1(colors.random())
+                    ColorBox1(colors.random())
+                    ColorBox1(colors.random())
+                    ColorBox1(colors.random())
+                    ColorBox1(colors.random())
+                    ColorBox1(colors.random())
+                }
+            }
+
+            Surface(
+                color = Color.DarkGray,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Column(verticalArrangement = Arrangement.SpaceEvenly) {
+                    ColorBox2(colors.random())
+                    ColorBox2(colors.random())
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.Top
+                    ) {
+                        ColorBox1(colors.random())
+                        ColorBox1(colors.random())
+                        ColorBox1(colors.random())
+                        ColorBox1(colors.random())
+                        ColorBox1(colors.random())
+                        ColorBox1(colors.random())
+                    }
+                    ColorBox2(colors.random())
+                    ColorBox2(colors.random())
                 }
             }
         }
@@ -125,13 +150,24 @@ fun MainScreen() {
 }
 
 @Composable
-fun ColorBox(color: Color) {
+fun ColorBox1(color: Color) {
     Surface(
         color = color,
         modifier = Modifier
             .height(100.dp)
             .width(50.dp)
             .padding(8.dp)
+    ) {}
+}
+
+@Composable
+fun ColorBox2(color: Color) {
+    Surface(
+        color = color,
+        modifier = Modifier
+            .height(30.dp)
+            .fillMaxWidth()
+            .padding(2.dp)
     ) {}
 }
 
@@ -151,7 +187,7 @@ fun GreetingText(
         modifier = modifier
             .clickable { }
             .height(120.dp)
-            .padding(24.dp),
+            .padding(16.dp),
         style = MaterialTheme.typography.bodyMedium,
         fontWeight = FontWeight.SemiBold
         // style = TextStyle(
