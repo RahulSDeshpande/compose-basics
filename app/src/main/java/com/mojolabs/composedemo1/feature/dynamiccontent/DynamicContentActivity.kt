@@ -41,19 +41,24 @@ class DynamicContentActivity : ComponentActivity() {
 
 @Composable
 private fun DynamicContentMainScreen() {
-    Column(modifier = Modifier.fillMaxSize()) {
-        NameList()
-    }
-}
-
-@Composable
-private fun NameList() {
     val counterState = remember { mutableIntStateOf(0) }
 
     val namesListState = remember { mutableStateListOf("Name ${counterState.intValue++}") }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        for (name in namesListState) {
+        NameList(namesListState) {
+            namesListState.add("Name ${counterState.intValue++}")
+        }
+    }
+}
+
+@Composable
+private fun NameList(
+    names: MutableList<String>,
+    buttonClick: () -> Unit
+) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        for (name in names) {
             NameText(name = name)
         }
 
@@ -61,7 +66,7 @@ private fun NameList() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            onClick = { namesListState.add("Name ${counterState.intValue++}") }
+            onClick = buttonClick
         ) {
             Text(text = "Add new name")
         }
