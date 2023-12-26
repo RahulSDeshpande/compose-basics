@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -45,31 +47,42 @@ private fun DynamicContentMainScreen() {
 
     val namesListState = remember { mutableStateListOf("Name ${counterState.intValue++}") }
 
+    val newNameState = remember { mutableStateOf("") }
+
     Column(modifier = Modifier.fillMaxSize()) {
-        NameList(namesListState) {
-            namesListState.add("Name ${counterState.intValue++}")
-        }
+        NameList(
+            names = namesListState,
+            buttonClick = { namesListState.add(newNameState.value) },
+            textFieldValue = newNameState.value,
+            textFieldUpdate = { newNameState.value = it }
+        )
     }
 }
 
 @Composable
 private fun NameList(
     names: MutableList<String>,
-    buttonClick: () -> Unit
+    buttonClick: () -> Unit,
+    textFieldValue: String,
+    textFieldUpdate: (String) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        for (name in names) {
-            NameText(name = name)
-        }
+    for (name in names) {
+        NameText(name = name)
+    }
 
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            onClick = buttonClick
-        ) {
-            Text(text = "Add new name")
-        }
+    TextField(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        value = textFieldValue,
+        onValueChange = { textFieldUpdate(it) }
+    )
+
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        onClick = buttonClick
+    ) {
+        Text(text = "Add new name")
     }
 }
 
