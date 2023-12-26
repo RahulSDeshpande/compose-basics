@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,34 +17,36 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mojolabs.composedemo1.R
+import com.mojolabs.composedemo1.ui.theme.ComposeDemo1Theme
 
 class AdvanceDesignsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AdvanceDesignsMainScreen()
+            ComposeDemo1Theme {
+                AdvanceDesignsMainScreen()
+            }
         }
     }
 }
 
 @Composable
 private fun AdvanceDesignsMainScreen() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color.LightGray
-    ) {
+    Surface(modifier = Modifier.fillMaxSize()) {
         ProfileCard()
     }
 }
@@ -57,7 +61,7 @@ private fun ProfileCard() {
         elevation = CardDefaults.elevatedCardElevation()
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().background(color = Color.White),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
@@ -86,10 +90,18 @@ private fun ProfilePicture() {
 
 @Composable
 private fun ProfileContent() {
-    Text(
-        text = "John Doe",
-        modifier = Modifier.padding(8.dp)
-    )
+    Column(Modifier.fillMaxWidth()) {
+        Text(
+            text = "John Doe",
+            modifier = Modifier.padding(8.dp),
+            style = MaterialTheme.typography.headlineSmall
+        )
+        Text(
+            text = "Sr. Software Engineer",
+            modifier = Modifier.padding(8.dp).alpha(0.8f),
+            style = MaterialTheme.typography.labelMedium
+        )
+    }
 }
 
 @Preview(
@@ -98,5 +110,7 @@ private fun ProfileContent() {
 )
 @Composable
 private fun AdvanceDesignsPreview() {
-    AdvanceDesignsMainScreen()
+    ComposeDemo1Theme {
+        AdvanceDesignsMainScreen()
+    }
 }

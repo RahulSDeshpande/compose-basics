@@ -30,6 +30,18 @@
             android:exported="true"
             android:label="Dynamic Content 2"
             android:theme="@style/Theme.ComposeDemo1">
+            <!-- <intent-filter> -->
+            <!--     <action android:name="android.intent.action.MAIN" /> -->
+
+            <!--     <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+
+        <activity
+            android:name=".feature.advancedesigns.AdvanceDesignsActivity"
+            android:exported="true"
+            android:label="Advance Designs"
+            android:theme="@style/Theme.ComposeDemo1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
