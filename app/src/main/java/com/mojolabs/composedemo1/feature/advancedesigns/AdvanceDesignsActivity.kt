@@ -36,7 +36,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mojolabs.composedemo1.R
 import com.mojolabs.composedemo1.ui.theme.ComposeDemo1Theme
 
 class AdvanceDesignsActivity : ComponentActivity() {
@@ -45,21 +44,25 @@ class AdvanceDesignsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeDemo1Theme {
-                AdvanceDesignsMainScreen()
+                AdvanceDesignsMainScreen(userProfileList)
             }
         }
     }
 }
 
 @Composable
-private fun AdvanceDesignsMainScreen() {
+private fun AdvanceDesignsMainScreen(userProfileList: List<UserProfileModel>) {
     Scaffold(topBar = { AppBar() }) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Surface(modifier = Modifier.fillMaxSize()) {
-                ProfileCard()
+                Column {
+                    for (userProfileModel in userProfileList) {
+                        ProfileCard(userProfileModel)
+                    }
+                }
             }
         }
     }
@@ -85,7 +88,7 @@ fun AppBar() {
 }
 
 @Composable
-private fun ProfileCard() {
+private fun ProfileCard(userProfileModel: UserProfileModel) {
     Card(
         modifier = Modifier
             .padding(8.dp)
@@ -98,22 +101,31 @@ private fun ProfileCard() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            ProfilePicture()
-            ProfileContent()
+            ProfilePicture(
+                photoResId = userProfileModel.photo,
+                isOnline = userProfileModel.isOnline
+            )
+            ProfileContent(
+                name = userProfileModel.name,
+                designation = userProfileModel.designation
+            )
         }
     }
 }
 
 @Composable
-private fun ProfilePicture() {
+private fun ProfilePicture(
+    photoResId: Int,
+    isOnline: Boolean
+) {
     Card(
         shape = CircleShape,
-        border = BorderStroke(width = 2.dp, color = Color.Gray),
+        border = BorderStroke(width = 2.dp, color = if (isOnline) Color.Green else Color.Gray),
         modifier = Modifier.padding(16.dp),
         elevation = CardDefaults.elevatedCardElevation()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.img_profile_1),
+            painter = painterResource(id = photoResId),
             contentDescription = "Android image",
             modifier = Modifier.size(80.dp, 80.dp),
             contentScale = ContentScale.Crop
@@ -122,15 +134,18 @@ private fun ProfilePicture() {
 }
 
 @Composable
-private fun ProfileContent() {
+private fun ProfileContent(
+    name: String,
+    designation: String
+) {
     Column(Modifier.fillMaxWidth()) {
         Text(
-            text = "John Doe",
+            text = name,
             modifier = Modifier.padding(8.dp),
             style = MaterialTheme.typography.headlineSmall
         )
         Text(
-            text = "Sr. Software Engineer",
+            text = designation,
             modifier = Modifier.padding(8.dp).alpha(0.8f),
             style = MaterialTheme.typography.labelMedium
         )
@@ -144,6 +159,6 @@ private fun ProfileContent() {
 @Composable
 private fun AdvanceDesignsPreview() {
     ComposeDemo1Theme {
-        AdvanceDesignsMainScreen()
+        AdvanceDesignsMainScreen(userProfileList)
     }
 }

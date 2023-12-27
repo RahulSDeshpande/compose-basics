@@ -1,6 +1,5 @@
 package com.mojolabs.composedemo1.ui.theme
 
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
@@ -8,6 +7,6 @@ import androidx.compose.ui.unit.dp
 val shapes =
     Shapes(
         small = RoundedCornerShape(4.dp),
-        medium = CutCornerShape(topEnd = 4.dp),
-        large = RoundedCornerShape(0.dp)
+        medium = RoundedCornerShape(8.dp),
+        large = RoundedCornerShape(16.dp)
     )
