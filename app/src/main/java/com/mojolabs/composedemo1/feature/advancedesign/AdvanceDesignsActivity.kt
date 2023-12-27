@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.feature.advancedesigns
+package com.mojolabs.composedemo1.feature.advancedesign
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -35,9 +35,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.mojolabs.composedemo1.ui.theme.ComposeDemo1Theme
 
 class AdvanceDesignsActivity : ComponentActivity() {
@@ -107,6 +107,7 @@ private fun ProfileCard(userProfileModel: UserProfileModel) {
         ) {
             ProfilePicture(
                 photoResId = userProfileModel.photo,
+                photoUrl = userProfileModel.photoUrl,
                 isOnline = userProfileModel.isOnline
             )
             ProfileContent(
@@ -120,6 +121,7 @@ private fun ProfileCard(userProfileModel: UserProfileModel) {
 @Composable
 private fun ProfilePicture(
     photoResId: Int,
+    photoUrl: String,
     isOnline: Boolean
 ) {
     Card(
@@ -129,7 +131,8 @@ private fun ProfilePicture(
         elevation = CardDefaults.elevatedCardElevation()
     ) {
         Image(
-            painter = painterResource(id = photoResId),
+            // painter = painterResource(id = photoResId),
+            painter = rememberAsyncImagePainter(model = photoUrl),
             contentDescription = "Android image",
             modifier = Modifier.size(80.dp, 80.dp),
             contentScale = ContentScale.Crop

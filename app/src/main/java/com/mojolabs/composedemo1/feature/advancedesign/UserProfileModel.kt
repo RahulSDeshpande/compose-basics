@@ -1,9 +1,11 @@
-package com.mojolabs.composedemo1.feature.advancedesigns
+package com.mojolabs.composedemo1.feature.advancedesign
 
 import com.mojolabs.composedemo1.R
 
 data class UserProfileModel(
     val photo: Int,
+    val photoUrl: String = "https://picsum.photos/200",
+    // val photoUrl: String = "https://i.dummyjson.com/data/products/9/1.jpg",
     val isOnline: Boolean,
     val name: String,
     val designation: String
