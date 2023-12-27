@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -58,11 +60,17 @@ private fun AdvanceDesignsMainScreen(userProfileList: List<UserProfileModel>) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Surface(modifier = Modifier.fillMaxSize()) {
-                Column {
-                    for (userProfileModel in userProfileList) {
-                        ProfileCard(userProfileModel)
+                LazyColumn {
+                    items(items = userProfileList) {
+                        ProfileCard(userProfileModel = it)
                     }
                 }
+
+                // Column {
+                //     for (userProfileModel in userProfileList) {
+                //         ProfileCard(userProfileModel)
+                //     }
+                // }
             }
         }
     }
@@ -97,7 +105,9 @@ private fun ProfileCard(userProfileModel: UserProfileModel) {
         elevation = CardDefaults.elevatedCardElevation()
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().background(color = Color.White),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = Color.White),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
@@ -146,7 +156,9 @@ private fun ProfileContent(
         )
         Text(
             text = designation,
-            modifier = Modifier.padding(8.dp).alpha(0.8f),
+            modifier = Modifier
+                .padding(8.dp)
+                .alpha(0.8f),
             style = MaterialTheme.typography.labelMedium
         )
     }
