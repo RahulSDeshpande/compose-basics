@@ -46,7 +46,10 @@ fun UserProfileNavigator() {
                 }
             )
         ) {
-            UserProfileDetailsScreen(userId = it.arguments?.getString("user_id"))
+            UserProfileDetailsScreen(
+                userId = it.arguments?.getString("user_id"),
+                navController = navController
+            )
         }
     }
 }

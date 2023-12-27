@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,7 +47,15 @@ fun UserProfileListScreen(
     userProfileList: List<UserProfileModel>,
     navController: NavHostController?
 ) {
-    Scaffold(topBar = { AppBar(title = "User Profile List") }) { innerPadding ->
+    Scaffold(
+        topBar = {
+            AppBar(
+                title = "User Profile List",
+                navIcon = Icons.Default.Home,
+                navIconClick = {}
+            )
+        }
+    ) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -71,7 +80,11 @@ fun UserProfileListScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(title: String) {
+fun AppBar(
+    title: String,
+    navIcon: ImageVector,
+    navIconClick: () -> Unit
+) {
     TopAppBar(
         colors = topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -80,9 +93,11 @@ fun AppBar(title: String) {
         title = { Text(text = title) },
         navigationIcon = {
             Icon(
-                imageVector = Icons.Default.Home,
+                imageVector = navIcon,
                 contentDescription = "Top app bar nav icon",
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clickable { navIconClick.invoke() }
             )
         }
     )
