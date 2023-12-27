@@ -65,12 +65,6 @@ private fun AdvanceDesignsMainScreen(userProfileList: List<UserProfileModel>) {
                         ProfileCard(userProfileModel = it)
                     }
                 }
-
-                // Column {
-                //     for (userProfileModel in userProfileList) {
-                //         ProfileCard(userProfileModel)
-                //     }
-                // }
             }
         }
     }
