@@ -73,6 +73,7 @@ fun ComposeDemo1Theme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
+        shapes = shapes,
         content = content
     )
 }
