@@ -52,9 +52,14 @@ class AdvanceDesignsActivity : ComponentActivity() {
 
 @Composable
 private fun AdvanceDesignsMainScreen() {
-    Scaffold(topBar = { AppBar() }) {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            ProfileCard()
+    Scaffold(topBar = { AppBar() }) { innerPadding ->
+        Column(
+            modifier = Modifier.padding(innerPadding),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Surface(modifier = Modifier.fillMaxSize()) {
+                ProfileCard()
+            }
         }
     }
 }
@@ -63,6 +68,7 @@ private fun AdvanceDesignsMainScreen() {
 @Composable
 fun AppBar() {
     TopAppBar(
+
         title = { Text(text = "TopAppBar") },
         navigationIcon = {
             Icon(
