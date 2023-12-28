@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.feature.advancedesign
+package com.mojolabs.composebasics.feature.advancedesign
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.mojolabs.composedemo1.ui.theme.ComposeDemo1Theme
+import com.mojolabs.composebasics.ui.theme.ComposeDemo1Theme
 
 class AdvanceDesignsActivity : ComponentActivity() {
 

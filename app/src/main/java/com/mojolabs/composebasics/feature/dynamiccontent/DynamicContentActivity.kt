@@ -1,9 +1,8 @@
-package com.mojolabs.composedemo1.feature.dynamiccontent2
+package com.mojolabs.composebasics.feature.dynamiccontent
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,38 +12,49 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-class DynamicContent2Activity : ComponentActivity() {
+// private val nameList =
+//     mutableListOf(
+//         "Aayan",
+//         "Deepa",
+//         "Rahul",
+//         "Raghu",
+//         "Aditya",
+//         "Sureshhhhhhh"
+//     )
 
-    private val viewModel: DynamicContent2ViewModel by viewModels()
+class DynamicContentActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DynamicContentMainScreen(viewModel)
+            DynamicContentMainScreen()
         }
     }
 }
 
 @Composable
-private fun DynamicContentMainScreen(
-    viewModel: DynamicContent2ViewModel = DynamicContent2ViewModel()
-) {
-    val nameListState = viewModel.nameListState.observeAsState(mutableListOf("Names\\n------"))
+private fun DynamicContentMainScreen() {
+    val counterState = remember { mutableIntStateOf(0) }
 
-    val newNameState = viewModel.newNameState.observeAsState(initial = "")
+    val namesListState = remember { mutableStateListOf("Name ${counterState.intValue++}") }
+
+    val newNameState = remember { mutableStateOf("") }
 
     Column(modifier = Modifier.fillMaxSize()) {
         NameList(
-            names = nameListState.value,
-            buttonClick = { viewModel.updateNameList(newNameState.value) },
+            names = namesListState,
+            buttonClick = { namesListState.add(newNameState.value) },
             textFieldValue = newNameState.value,
-            textFieldUpdate = { viewModel.updateNewName(it) }
+            textFieldUpdate = { newNameState.value = it }
         )
     }
 }

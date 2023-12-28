@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.feature.dynamiccontent2
+package com.mojolabs.composebasics.feature.dynamiccontent2
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

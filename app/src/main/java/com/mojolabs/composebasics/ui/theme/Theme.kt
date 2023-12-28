@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.ui.theme
+package com.mojolabs.composebasics.ui.theme
 
 import android.app.Activity
 import android.os.Build

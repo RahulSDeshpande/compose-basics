@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.feature.advancedesign
+package com.mojolabs.composebasics.feature.advancedesign
 
 import com.mojolabs.composedemo1.R
 

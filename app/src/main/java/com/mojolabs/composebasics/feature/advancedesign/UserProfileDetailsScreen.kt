@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.feature.advancedesign
+package com.mojolabs.composebasics.feature.advancedesign
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.mojolabs.composedemo1.ui.theme.ComposeDemo1Theme
+import com.mojolabs.composebasics.ui.theme.ComposeDemo1Theme
 
 // region USER PROFILE DETAILS
 

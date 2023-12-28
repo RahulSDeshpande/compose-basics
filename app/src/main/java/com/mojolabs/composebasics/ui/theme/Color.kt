@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.ui.theme
+package com.mojolabs.composebasics.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

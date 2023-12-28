@@ -1,4 +1,4 @@
-package com.mojolabs.composedemo1.feature.basics
+package com.mojolabs.composebasics.feature.basics
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mojolabs.composedemo1.ui.theme.colors
+import com.mojolabs.composebasics.ui.theme.colors
 
 class BasicsActivity : ComponentActivity() {
 
